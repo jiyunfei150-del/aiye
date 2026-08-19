@@ -56,16 +56,17 @@
   header .sub { color: var(--ink-soft); font-size: .88rem; margin-top: .4rem; }
   header .sub b { color: var(--ink); font-weight: 600; }
   header .soft { font-size: .78rem; margin-top: .25rem; }
-  .seals { flex: none; display: flex; gap: .55rem; align-items: flex-start; }
+  .seals { flex: none; display: flex; gap: .55rem; align-items: center; }
   .seal {
-    flex: none; width: 58px; height: 58px; background: var(--red); color: var(--seal-text);
-    font-family: "Songti SC", "STSong", "SimSun", serif; font-weight: 700; font-size: 1.2rem;
+    flex: none; width: 58px; height: 58px; box-sizing: border-box;
+    background: var(--red); color: var(--seal-text);
+    font-family: "Songti SC", "STSong", "SimSun", serif; font-weight: 700; font-size: 1.15rem;
     letter-spacing: .1em; writing-mode: vertical-rl; display: flex; align-items: center;
-    justify-content: center; border-radius: 9px; transform: rotate(-4deg);
+    justify-content: center; border-radius: 9px; line-height: 1;
     box-shadow: 0 2px 8px rgba(120, 30, 20, .22);
   }
   .seal-icey {
-    writing-mode: horizontal-tb; font-size: .92rem; letter-spacing: .04em;
+    writing-mode: horizontal-tb; font-size: 1.02rem; letter-spacing: .02em;
   }
   .rule-double { border-top: 2px solid var(--red); border-bottom: 1px solid var(--red);
     height: 5px; margin-top: 1.15rem; }
