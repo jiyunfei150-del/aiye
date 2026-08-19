@@ -1,4 +1,4 @@
-<title>艾叶定投</title>
+<title>艾叶与ICEY</title>
 <style>
   :root {
     --paper: #FAF3ED;
@@ -56,12 +56,19 @@
   header .sub { color: var(--ink-soft); font-size: .88rem; margin-top: .4rem; }
   header .sub b { color: var(--ink); font-weight: 600; }
   header .soft { font-size: .78rem; margin-top: .25rem; }
+  .seals { flex: none; display: flex; gap: .55rem; align-items: flex-start; }
   .seal {
     flex: none; width: 58px; height: 58px; background: var(--red); color: var(--seal-text);
     font-family: "Songti SC", "STSong", "SimSun", serif; font-weight: 700; font-size: 1.2rem;
     letter-spacing: .1em; writing-mode: vertical-rl; display: flex; align-items: center;
     justify-content: center; border-radius: 9px; transform: rotate(-4deg);
     box-shadow: 0 2px 8px rgba(120, 30, 20, .22);
+  }
+  .seal-icey {
+    background: transparent; color: var(--red); border: 2.5px solid var(--red);
+    writing-mode: horizontal-tb; font-size: .92rem; letter-spacing: .04em;
+    transform: rotate(3deg); margin-top: .5rem;
+    box-shadow: 0 2px 8px rgba(120, 30, 20, .14);
   }
   .rule-double { border-top: 2px solid var(--red); border-bottom: 1px solid var(--red);
     height: 5px; margin-top: 1.15rem; }
@@ -107,11 +114,14 @@
   <header>
     <div class="head-row">
       <div>
-        <h1>艾叶定投</h1>
+        <h1>艾叶与ICEY</h1>
         <div class="sub">种一棵树,每月浇一次水。<b>下一次浇水:9 月 7 日</b></div>
         <div class="sub soft">账本更新于 2026-08-19</div>
       </div>
-      <div class="seal" aria-hidden="true">艾叶</div>
+      <div class="seals" aria-hidden="true">
+        <div class="seal">艾叶</div>
+        <div class="seal seal-icey">ICEY</div>
+      </div>
     </div>
     <div class="rule-double"></div>
   </header>
