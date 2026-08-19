@@ -1,0 +1,214 @@
+<title>艾叶定投</title>
+<style>
+  :root {
+    --paper: #FAF3ED;
+    --card: #FFFDFB;
+    --ink: #33261F;
+    --ink-soft: #7A6A60;
+    --red: #A32B20;
+    --red-tint: #F6E2DB;
+    --up: #C03327;
+    --down: #9A8578;
+    --line: #EBDCD2;
+    --seal-text: #FBEFE3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #241614;
+      --card: #2F1F1B;
+      --ink: #EFE1D7;
+      --ink-soft: #B99E90;
+      --red: #D96A52;
+      --red-tint: #43241E;
+      --up: #E8705B;
+      --down: #B39E8F;
+      --line: #4A2F28;
+      --seal-text: #2A1310;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #241614;
+    --card: #2F1F1B;
+    --ink: #EFE1D7;
+    --ink-soft: #B99E90;
+    --red: #D96A52;
+    --red-tint: #43241E;
+    --up: #E8705B;
+    --down: #B39E8F;
+    --line: #4A2F28;
+    --seal-text: #2A1310;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.75 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    margin: 0;
+    padding: 2.6rem 1.25rem 3rem;
+  }
+  .sheet { max-width: 660px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+  .head-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  header h1 {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+    font-size: 2.1rem; font-weight: 700; letter-spacing: .14em; margin: 0;
+    color: var(--red);
+  }
+  header .sub { color: var(--ink-soft); font-size: .88rem; margin-top: .4rem; }
+  header .sub b { color: var(--ink); font-weight: 600; }
+  header .soft { font-size: .78rem; margin-top: .25rem; }
+  .seal {
+    flex: none; width: 58px; height: 58px; background: var(--red); color: var(--seal-text);
+    font-family: "Songti SC", "STSong", "SimSun", serif; font-weight: 700; font-size: 1.2rem;
+    letter-spacing: .1em; writing-mode: vertical-rl; display: flex; align-items: center;
+    justify-content: center; border-radius: 9px; transform: rotate(-4deg);
+    box-shadow: 0 2px 8px rgba(120, 30, 20, .22);
+  }
+  .rule-double { border-top: 2px solid var(--red); border-bottom: 1px solid var(--red);
+    height: 5px; margin-top: 1.15rem; }
+  .bignums { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+  .bignums .cell { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: .9rem 1rem .8rem; }
+  .cell .label { font-size: .75rem; color: var(--ink-soft); letter-spacing: .12em; }
+  .cell .num { font-size: 1.45rem; font-weight: 700; font-variant-numeric: tabular-nums; margin-top: .15rem; }
+  .neg { color: var(--down); } .pos { color: var(--up); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 1.1rem 1.25rem; }
+  .card h2 { font-size: .8rem; letter-spacing: .18em; color: var(--red); font-weight: 600; margin: 0 0 .7rem; }
+  .holding { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .3rem; }
+  .holding .name { font-weight: 700; font-size: 1.05rem; }
+  .holding .code { color: var(--ink-soft); font-size: .8rem; margin-left: .45rem; }
+  .holding .figs { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-size: .88rem; }
+  .next { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+  .next .date { font-size: 1.35rem; font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; }
+  .next .note { color: var(--ink-soft); font-size: .85rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; font-variant-numeric: tabular-nums; }
+  th { text-align: left; font-weight: 600; color: var(--ink-soft); font-size: .75rem;
+    letter-spacing: .1em; padding: .3rem .5rem .45rem 0; border-bottom: 1px solid var(--red-tint); }
+  td { padding: .5rem .5rem .5rem 0; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: none; }
+  .rules { color: var(--ink-soft); font-size: .85rem; margin: 0; padding-left: 1.2em; }
+  .rules li { margin: .3rem 0; }
+  .rules b { color: var(--ink); font-weight: 600; }
+  .progress-wrap { display: flex; align-items: center; gap: .9rem; }
+  .bar { flex: 1; height: 8px; border-radius: 999px; background: var(--red-tint); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--red); border-radius: 999px; }
+  .pct { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .progress-note { color: var(--ink-soft); font-size: .82rem; margin-top: .5rem; }
+  a { color: var(--red); }
+  #log-toggle { margin-top: .7rem; width: 100%; border: 1px dashed var(--line);
+    background: none; color: var(--red); border-radius: 8px; padding: .45rem;
+    font: inherit; font-size: .82rem; cursor: pointer; }
+  #log-toggle:hover { background: var(--red-tint); }
+  #log-toggle:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  footer { color: var(--ink-soft); font-size: .78rem; text-align: center; line-height: 1.7; }
+</style>
+
+<div class="sheet">
+  <header>
+    <div class="head-row">
+      <div>
+        <h1>艾叶定投</h1>
+        <div class="sub">种一棵树,每月浇一次水。<b>下一次浇水:9 月 7 日</b></div>
+        <div class="sub soft">账本更新于 2026-08-19</div>
+      </div>
+      <div class="seal" aria-hidden="true">艾叶</div>
+    </div>
+    <div class="rule-double"></div>
+  </header>
+
+  <div class="bignums">
+    <div class="cell">
+      <div class="label">累计投入</div>
+      <div class="num">¥6,095</div>
+    </div>
+    <div class="cell">
+      <div class="label">现在价值</div>
+      <div class="num">¥6,045</div>
+    </div>
+    <div class="cell">
+      <div class="label">收益</div>
+      <div class="num neg">−0.8%</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>现在种着的</h2>
+    <div class="holding">
+      <div><span class="name">科创芯片ETF南方</span><span class="code">588890</span></div>
+      <div class="figs">1500 份 · 买入价 4.063 · 最近价 4.030</div>
+    </div>
+    <div class="figs" style="color:var(--ink-soft);font-size:.82rem;margin-top:.55rem">
+      买在 8 月 19 日大跌 6% 的那天——按规矩,跌得多的月份反而多买。
+      <a href="https://quote.eastmoney.com/sh588890.html" target="_blank" rel="noopener">查实时价 ↗</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>浇水记录</h2>
+    <table id="log">
+      <thead><tr><th>期</th><th>日期</th><th>买了什么</th><th>档位</th><th>金额</th></tr></thead>
+      <tbody>
+        <!-- 新记录加在最上面一行 -->
+        <tr><td>1</td><td>2026-08-19</td><td>科创芯片ETF南方</td><td>便宜档</td><td>¥6,095</td></tr>
+      </tbody>
+    </table>
+    <button id="log-toggle" hidden type="button"></button>
+  </div>
+
+  <div class="card">
+    <h2>下期计划</h2>
+    <div class="next">
+      <div class="date">9 月 7 日(周一)</div>
+      <div class="note">第 2 期</div>
+    </div>
+    <ul class="rules" style="margin-top:.5rem">
+      <li>按排班表,9 月轮到<b>纳指ETF(513100)</b>——但它是跨境基金,买之前先查溢价:<b>溢价 ≤2% 就买它;超了就跳过</b>,顺延买科创芯片</li>
+      <li>金额到当天定档:看它离一年最高点跌了多少——跌得深就 6000,一般 5000,贵了 4000</li>
+      <li>买完记一笔账,这一页就会更新</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>这棵树的规矩</h2>
+    <ul class="rules">
+      <li><b>每月 5 号左右投一次</b>,便宜多投、贵了少投:便宜 6000 / 正常 5000 / 贵 4000</li>
+      <li><b>永远不止损</b>——跌了不卖,只会多买</li>
+      <li>哪一笔翻倍了,<b>卖一半</b>,卖出来的钱进"胜利基金",随便花,永不再投回股市(目前 ¥0)</li>
+      <li>买什么按十二个月的排班表来,不追热点、不挑时候</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>回本长路</h2>
+    <div class="progress-wrap">
+      <div class="bar"><i style="width:0%"></i></div>
+      <div class="pct">0.0%</div>
+    </div>
+    <div class="progress-note">
+      之前亏掉的,从今往后就靠这棵树一点点长回来——预计五到八年,不急。
+    </div>
+  </div>
+
+  <footer>
+    价格为最近一次记账时点,非实时 · 每月投入后此页更新<br>
+    家庭内部记录,非投资建议
+  </footer>
+</div>
+<script>
+(function () {
+  var MAX = 5;
+  var tbody = document.querySelector("#log tbody");
+  var btn = document.getElementById("log-toggle");
+  if (!tbody || !btn) return;
+  var rows = Array.prototype.slice.call(tbody.rows);
+  if (rows.length <= MAX) return;
+  var collapsed = true;
+  function render() {
+    rows.forEach(function (r, i) { r.hidden = collapsed && i >= MAX; });
+    btn.textContent = collapsed ? "展开全部 " + rows.length + " 期" : "收起,只看最近 5 期";
+    btn.hidden = false;
+  }
+  btn.addEventListener("click", function () { collapsed = !collapsed; render(); });
+  render();
+})();
+</script>
