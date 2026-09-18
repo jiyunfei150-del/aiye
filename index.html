@@ -50,6 +50,7 @@
     padding:1.05rem 1.15rem 1rem; display:flex; flex-direction:column; justify-content:space-between; }
   .cell .label { font-size:.75rem; color:var(--ink-soft); letter-spacing:.12em; }
   .cell .num { font-size:1.5rem; font-weight:700; font-variant-numeric:tabular-nums; margin-top:.3rem; }
+  .cell .sub { font-size:.74rem; color:var(--ink-soft); margin-top:.2rem; font-variant-numeric:tabular-nums; }
   .neg { color:var(--down); } .pos { color:var(--up); }
   .card { background:var(--card); border:1px solid var(--line); border-radius:12px;
     padding:1.25rem 1.35rem; }
@@ -102,7 +103,7 @@
       <div>
         <h1>AIYE &amp; ICEY</h1>
         <div class="sub">两条线:种树的,捡钢镚的。<b>下一次浇水:10 月 9 日</b></div>
-        <div class="sub soft">自动更新于 2026-09-18 15:08</div>
+        <div class="sub soft">自动更新于 2026-09-18 15:11</div>
       </div>
       <div class="seals" aria-hidden="true">
         <div class="seal">艾叶</div>
@@ -160,8 +161,11 @@
   <div class="bignums">
     <div class="cell"><div class="label">定投指数</div>
       <div class="num neg">996.3</div></div>
-    <div class="cell"><div class="label">累计投入</div><div class="num">¥12,017</div></div>
-    <div class="cell"><div class="label">现在价值</div><div class="num">¥12,291</div></div>
+    <div class="cell"><div class="label">在场</div><div class="num">¥12,291</div>
+      <div class="sub">投入 ¥12,017</div></div>
+    <div class="cell"><div class="label">累计盈亏</div>
+      <div class="num pos">+274</div>
+      <div class="sub pos">+2.28%</div></div>
   </div>
   <div class="card"><h2>现在种着的</h2><div class="holding"><div><span class="name">科创芯片ETF南方</span><span class="code">588890</span></div><div class="figs pos">盈亏 +275(+2.3%)</div></div><div class="hgrid"><div><div class="k">买了多少</div><div class="v">9,200 份</div></div><div><div class="k">成本价</div><div class="v">1.3061</div></div><div><div class="k">花了多少</div><div class="v">¥12,016</div></div><div><div class="k">现价</div><div class="v">1.336</div></div><div><div class="k">现在值</div><div class="v">¥12,291</div></div><div><div class="k">出一半的价</div><div class="v">2.612<span class="sub">还差 +96%</span></div></div></div><div class="subnote">出一半 = 成本翻倍(+100%)时卖掉一半,剩下的是白拿的。 2026-08-25基金1拆3:1500份@4.063→4500份@1.3543,成本盈亏不变 <a href="https://quote.eastmoney.com/sh588890.html" target="_blank" rel="noopener">查实时价 ↗</a></div></div>
   <div class="card"><h2>浇水记录</h2>
@@ -185,10 +189,11 @@
   <div class="bignums">
     <div class="cell"><div class="label">配债指数</div>
       <div class="num neg">795.1</div></div>
-    <div class="cell"><div class="label">在手转债</div>
-      <div class="num">351 张</div></div>
+    <div class="cell"><div class="label">在场</div><div class="num">¥35,100</div>
+      <div class="sub">持债 351 张</div></div>
     <div class="cell"><div class="label">累计盈亏</div>
-      <div class="num neg">-24,586</div></div>
+      <div class="num neg">-24,586</div>
+      <div class="sub neg">-20.49% 池子</div></div>
   </div>
   <div class="card"><h2>正在进行</h2><div class="holding"><div><span class="name">四方转债</span><span class="code">四方科技 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-15,307</span> · 持债 210 张(已缴 ¥21,000)</div></div><div class="subnote">债开板过 <b>173</b> 这单就回本;模型参考开板 157(债腿约 +12,011),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">润禾转02·配债腿</span><span class="code">润禾材料 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-2,664</span> · 持债 53 张(已缴 ¥5,300)</div></div><div class="subnote">债开板过 <b>150</b> 这单就回本;模型参考开板 189(债腿约 +4,717),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">瑞鹄转02</span><span class="code">瑞鹄模具 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-3,239</span> · 持债 88 张(已缴 ¥8,800)</div></div><div class="subnote">债开板过 <b>137</b> 这单就回本;模型参考开板 167(债腿约 +5,858),<b>只作参考,卖出前不入账</b></div></div>
   <div class="card"><h2>战绩</h2>
@@ -204,9 +209,11 @@
   <div class="bignums">
     <div class="cell"><div class="label">埋伏指数</div>
       <div class="num pos">1,032.7</div></div>
-    <div class="cell"><div class="label">在场</div><div class="num">¥61,865</div></div>
+    <div class="cell"><div class="label">在场</div><div class="num">¥61,865</div>
+      <div class="sub">蹲着 3 只</div></div>
     <div class="cell"><div class="label">累计盈亏</div>
-      <div class="num pos">+3,918</div></div>
+      <div class="num pos">+3,918</div>
+      <div class="sub pos">+3.27% 池子</div></div>
   </div>
   <div class="card"><h2>正在蹲守</h2><div class="holding"><div><span class="name">航亚科技</span><span class="code">蹲守中</span></div><div class="figs">888 股 · 买 24.88 · 现 24.51 · <span class="neg">-346</span></div></div><div class="subnote">还剩 24 天到反转 · 跌到 22.89 就走</div><div class="holding"><div><span class="name">莱特光电</span><span class="code">蹲守中</span></div><div class="figs">500 股 · 买 43.00 · 现 43.20 · <span class="pos">+82</span></div></div><div class="subnote">还剩 17 天到反转 · 跌到 39.56 就走</div><div class="holding"><div><span class="name">华纬科技</span><span class="code">蹲守中</span></div><div class="figs">1000 股 · 买 18.09 · 现 18.50 · <span class="pos">+395</span></div></div><div class="subnote">还剩 16 天到反转 · 跌到 16.64 就走</div></div>
   
