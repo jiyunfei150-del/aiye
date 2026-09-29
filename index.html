@@ -2,16 +2,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AIYE &amp; ICEY</title>
 <style>
-  :root { --paper:#FAF3ED; --card:#FFFDFB; --ink:#33261F; --ink-soft:#7A6A60;
-    --red:#A32B20; --red-tint:#F6E2DB; --up:#C03327; --down:#9A8578;
-    --line:#EBDCD2; --seal-text:#FBEFE3; }
+  :root { --paper:#F7F3E9; --card:#FFFDF8; --ink:#26344A; --ink-soft:#697282;
+    --accent:#294674; --accent-on:#FFFDF8; --accent-tint:#E8EEF5;
+    --gold:#9D712C; --mf:#82699E; --chart-est:#9AAECC;
+    --red:#A54335; --red-tint:#F5E7E2; --up:#B44638; --down:#827D79;
+    --line:#DDD8C9; --hero-border:#C7D1E0; --seal-text:#FFF3E6; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-    --paper:#241614; --card:#2F1F1B; --ink:#EFE1D7; --ink-soft:#B99E90;
-    --red:#D96A52; --red-tint:#43241E; --up:#E8705B; --down:#B39E8F;
-    --line:#4A2F28; --seal-text:#2A1310; } }
-  :root[data-theme="dark"] { --paper:#241614; --card:#2F1F1B; --ink:#EFE1D7;
-    --ink-soft:#B99E90; --red:#D96A52; --red-tint:#43241E; --up:#E8705B;
-    --down:#B39E8F; --line:#4A2F28; --seal-text:#2A1310; }
+    --paper:#151B29; --card:#1F2838; --ink:#F4F0E7; --ink-soft:#B5BDCA;
+    --accent:#AFC5E6; --accent-on:#18243A; --accent-tint:#2A3C56;
+    --gold:#E3BD76; --mf:#C3A4E0; --chart-est:#94AAC9;
+    --red:#B85444; --red-tint:#49302F; --up:#E67A68; --down:#B5A9A0;
+    --line:#384455; --hero-border:#52617A; --seal-text:#FFF3E6; } }
+  :root[data-theme="dark"] { --paper:#151B29; --card:#1F2838; --ink:#F4F0E7;
+    --ink-soft:#B5BDCA; --accent:#AFC5E6; --accent-on:#18243A;
+    --accent-tint:#2A3C56; --gold:#E3BD76; --mf:#C3A4E0;
+    --chart-est:#94AAC9; --red:#B85444; --red-tint:#49302F; --up:#E67A68;
+    --down:#B5A9A0; --line:#384455; --hero-border:#52617A;
+    --seal-text:#FFF3E6; }
   * { box-sizing:border-box; }
   body { background:var(--paper); color:var(--ink);
     font:16px/1.65 "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
@@ -19,7 +26,7 @@
   .sheet { max-width:820px; margin:0 auto; display:flex; flex-direction:column; gap:1.1rem; }
   .head-row { display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; }
   header h1 { font-family:"Songti SC","STSong","SimSun",serif; font-size:2.1rem;
-    font-weight:700; letter-spacing:.14em; margin:0; color:var(--red); }
+    font-weight:700; letter-spacing:.14em; margin:0; color:var(--accent); }
   header .sub { color:var(--ink-soft); font-size:.88rem; margin-top:.4rem; }
   header .sub b { color:var(--ink); font-weight:600; }
   header .soft { font-size:.78rem; margin-top:.25rem; }
@@ -28,22 +35,22 @@
     font-family:"Songti SC","STSong","SimSun",serif; font-weight:700; font-size:1.15rem;
     letter-spacing:.1em; writing-mode:vertical-rl; display:flex; align-items:center;
     justify-content:center; border-radius:9px; line-height:1; transform:rotate(-4deg);
-    box-shadow:0 2px 8px rgba(120,30,20,.22); }
+    box-shadow:0 2px 8px rgba(60,48,42,.22); }
   .seal-icey { text-orientation:upright; font-size:.76rem; letter-spacing:.02em; }
-  .rule-double { border-top:2px solid var(--red); border-bottom:1px solid var(--red);
+  .rule-double { border-top:2px solid var(--gold); border-bottom:1px solid var(--gold);
     height:5px; margin-top:1.15rem; }
   .tabs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.5rem;
     position:sticky; top:0; z-index:5; padding:.45rem 0; background:var(--paper); }
   .tabs button { min-width:0; border:1px solid var(--line); background:var(--card);
     color:var(--ink-soft); border-radius:10px; padding:.55rem .2rem; font:inherit;
     font-size:.92rem; cursor:pointer; }
-  .tabs button.on { background:var(--red); color:var(--seal-text); border-color:var(--red);
-    font-weight:700; box-shadow:0 2px 8px rgba(120,30,20,.18); }
+  .tabs button.on { background:var(--accent); color:var(--accent-on); border-color:var(--accent);
+    font-weight:700; box-shadow:0 2px 8px rgba(39,65,110,.2); }
   .switch { display:inline-flex; border:1px solid var(--line); border-radius:8px;
     overflow:hidden; }
   .switch button { border:0; background:var(--card); color:var(--ink-soft);
     padding:.3rem .9rem; font:inherit; font-size:.8rem; cursor:pointer; }
-  .switch button.on { background:var(--red-tint); color:var(--red); font-weight:700; }
+  .switch button.on { background:var(--accent-tint); color:var(--accent); font-weight:700; }
   .legend button.lg { border:0; background:none; color:var(--ink-soft); font:inherit;
     font-size:.78rem; cursor:pointer; padding:.15rem .5rem .15rem 0; opacity:.38;
     transition:opacity .15s; }
@@ -57,10 +64,10 @@
   .neg { color:var(--down); } .pos { color:var(--up); }
   .card { background:var(--card); border:1px solid var(--line); border-radius:12px;
     padding:1.25rem 1.35rem; }
-  .card h2 { font-size:.8rem; letter-spacing:.18em; color:var(--red); font-weight:600; margin:0 0 .9rem; }
-  .overview-hero { padding:1.45rem 1.6rem; border-color:#D8B8A7;
-    background:linear-gradient(135deg,var(--card),var(--red-tint)); }
-  .eyebrow { color:var(--red); font-size:.78rem; font-weight:700; letter-spacing:.12em; }
+  .card h2 { font-size:.8rem; letter-spacing:.18em; color:var(--accent); font-weight:600; margin:0 0 .9rem; }
+  .overview-hero { padding:1.45rem 1.6rem; border-color:var(--hero-border);
+    background:linear-gradient(135deg,var(--card),var(--accent-tint)); }
+  .eyebrow { color:var(--accent); font-size:.78rem; font-weight:700; letter-spacing:.12em; }
   .hero-value { font-size:clamp(2.45rem,8vw,4rem); font-weight:750; line-height:1.1;
     letter-spacing:-.04em; font-variant-numeric:tabular-nums; margin:.45rem 0 .7rem; }
   .hero-value small { font-size:1rem; letter-spacing:0; margin-left:.35rem; }
@@ -83,13 +90,13 @@
   .line-link { width:100%; display:grid; grid-template-columns:1fr auto; gap:.1rem 1rem;
     text-align:left; border:1px solid var(--line); border-radius:10px; padding:.8rem 1rem;
     background:var(--paper); color:var(--ink); font:inherit; cursor:pointer; text-decoration:none; }
-  .line-link:hover,.line-link:focus-visible { border-color:var(--red); outline:none; }
+  .line-link:hover,.line-link:focus-visible { border-color:var(--accent); outline:none; }
   .line-link strong { font-size:1rem; }
   .line-link .amount { font-size:1.02rem; font-weight:700; font-variant-numeric:tabular-nums; }
   .line-link .meta { color:var(--ink-soft); font-size:.78rem; grid-column:1 / -1; }
   .detail-panel { padding:0; }
   .detail-panel summary { list-style:none; cursor:pointer; padding:1rem 1.35rem;
-    font-size:.9rem; font-weight:700; color:var(--red); }
+    font-size:.9rem; font-weight:700; color:var(--accent); }
   .detail-panel summary::-webkit-details-marker { display:none; }
   .detail-panel summary::after { content:"展开"; float:right; color:var(--ink-soft);
     font-size:.78rem; font-weight:400; }
@@ -112,37 +119,37 @@
     box-shadow:0 1px 0 var(--line); }
   h2 .cnt { font-size:.72rem; font-weight:400; color:var(--ink-soft); margin-left:.4rem; }
   .boards { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-  .boards .bt { font-weight:700; color:var(--red); font-size:.9rem; margin-bottom:.4rem; letter-spacing:.05em; }
+  .boards .bt { font-weight:700; color:var(--accent); font-size:.9rem; margin-bottom:.4rem; letter-spacing:.05em; }
   .boards .bt.bad { color:var(--down); }
-  .card.black { background:linear-gradient(180deg, #FDF8F4 0%, var(--card) 40%); }
+  .card.black { background:linear-gradient(180deg, var(--accent-tint) 0%, var(--card) 40%); }
   @media (max-width:640px) { .boards { grid-template-columns:1fr; } }
   .next { display:flex; align-items:baseline; gap:.8rem; flex-wrap:wrap; }
-  .next .date { font-size:1.35rem; font-weight:700; color:var(--red); font-variant-numeric:tabular-nums; }
+  .next .date { font-size:1.35rem; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; }
   .next .note { color:var(--ink-soft); font-size:.85rem; }
   table { border-collapse:collapse; width:100%; font-size:.88rem; font-variant-numeric:tabular-nums; }
   th { text-align:left; font-weight:600; color:var(--ink-soft); font-size:.75rem;
-    letter-spacing:.1em; padding:.3rem .5rem .45rem 0; border-bottom:1px solid var(--red-tint); }
+    letter-spacing:.1em; padding:.3rem .5rem .45rem 0; border-bottom:1px solid var(--accent-tint); }
   td { padding:.5rem .5rem .5rem 0; border-bottom:1px solid var(--line); }
   tr:last-child td { border-bottom:none; }
   .rules { color:var(--ink-soft); font-size:.85rem; margin:0; padding-left:1.2em; }
   .rules li { margin:.3rem 0; }
   .rules b { color:var(--ink); font-weight:600; }
   .progress-wrap { display:flex; align-items:center; gap:.9rem; }
-  .bar { flex:1; height:8px; border-radius:999px; background:var(--red-tint); overflow:hidden; }
-  .bar i { display:block; height:100%; background:var(--red); border-radius:999px; }
+  .bar { flex:1; height:8px; border-radius:999px; background:var(--accent-tint); overflow:hidden; }
+  .bar i { display:block; height:100%; background:var(--gold); border-radius:999px; }
   .pct { font-weight:700; font-variant-numeric:tabular-nums; }
   .progress-note { color:var(--ink-soft); font-size:.82rem; margin-top:.5rem; }
-  a { color:var(--red); }
+  a { color:var(--accent); }
   svg text { font-family:inherit; }
   .cw { position:relative; }
   .cw .tip { position:absolute; pointer-events:none; background:var(--card);
     border:1px solid var(--line); border-radius:8px; padding:.3rem .6rem;
     font-size:.8rem; font-variant-numeric:tabular-nums; white-space:nowrap;
-    box-shadow:0 2px 8px rgba(120,30,20,.15); }
-  .cw .tip b { color:var(--red); }
+    box-shadow:0 2px 8px rgba(39,65,110,.18); }
+  .cw .tip b { color:var(--accent); }
   #log-toggle { margin-top:.7rem; width:100%; border:1px dashed var(--line); background:none;
-    color:var(--red); border-radius:8px; padding:.45rem; font:inherit; font-size:.82rem; cursor:pointer; }
-  #log-toggle:hover { background:var(--red-tint); }
+    color:var(--accent); border-radius:8px; padding:.45rem; font:inherit; font-size:.82rem; cursor:pointer; }
+  #log-toggle:hover { background:var(--accent-tint); }
   footer { color:var(--ink-soft); font-size:.78rem; text-align:center; line-height:1.7; }
   @media (max-width:540px) {
     body { padding:1.25rem .85rem 2rem; }
@@ -171,7 +178,7 @@
       <div>
         <h1>AIYE &amp; ICEY</h1>
         <div class="sub">家里的投资账本 <b>· 下一次定投 10 月 9 日</b></div>
-        <div class="sub soft">数据更新于 2026-09-29 10:36</div>
+        <div class="sub soft">数据更新于 2026-09-29 10:39</div>
       </div>
       <div class="seals" aria-hidden="true">
         <div class="seal">艾叶</div>
@@ -200,31 +207,31 @@
   </div>
   <div class="card overview-hero">
     <div class="eyebrow">家庭账本 · 累计盈亏</div>
-    <div class="hero-value neg">-22,395<small>元</small></div>
-    <div class="hero-estimate">（在途配债预期收益：约 +12,541 元）</div>
+    <div class="hero-value neg">-22,447<small>元</small></div>
+    <div class="hero-estimate">（在途配债预期收益：约 +12,536 元）</div>
     <div class="hero-metrics">
-      <div><span>在场金额</span><strong>¥89,256</strong></div>
-      <div><span>综合指数</span><strong>807.7</strong></div>
+      <div><span>在场金额</span><strong>¥89,204</strong></div>
+      <div><span>综合指数</span><strong>807.4</strong></div>
       <div><span>回本进度</span><strong>0.00%</strong></div>
     </div>
   </div>
   <div class="card"><h2>三条线</h2>
     <div class="line-list">
       <a class="line-link" href="#dca"><strong>定投</strong>
-        <span class="amount neg">-462 元</span>
-        <span class="meta">在场 ¥11,555 · 点击看持仓</span></a>
+        <span class="amount neg">-443 元</span>
+        <span class="meta">在场 ¥11,574 · 点击看持仓</span></a>
       <a class="line-link" href="#qq"><strong>配债</strong>
-        <span class="amount neg">-25,941 元</span>
-        <span class="meta">在场 ¥28,783 · 226 张在途</span></a>
+        <span class="amount neg">-25,947 元</span>
+        <span class="meta">在场 ¥28,777 · 226 张在途</span></a>
       <a class="line-link" href="#mf"><strong>埋伏</strong>
-        <span class="amount pos">+3,997 元</span>
-        <span class="meta">在场 ¥48,918 · 2 只持仓</span></a>
+        <span class="amount pos">+3,943 元</span>
+        <span class="meta">在场 ¥48,854 · 2 只持仓</span></a>
     </div>
   </div>
   <details class="card detail-panel"><summary>走势与计算口径</summary>
     <div class="detail-body">
       <p class="subnote">综合指数按份额计算,基准 1000。未卖出的债按面值计；债的预测价格只在虚线中展示,不计入盈亏。</p>
-      <div class='legend' style='margin:0 0 .4rem'><button class="lg on" data-s="amt"><i style="display:inline-block;width:16px;height:3px;background:#8B1A10;margin-right:5px;vertical-align:middle"></i>实际盈亏 <b style="color:#8B1A10">-22,406</b></button><button class="lg on" data-s="pct"><i style="display:inline-block;width:16px;height:2px;background:#C9A227;margin-right:5px;vertical-align:middle"></i>实际比例 <b style="color:#C9A227">-19.2%</b></button><button class="lg on" data-s="est"><i style="display:inline-block;width:16px;height:0;border-top:2px dashed #C4857A;margin-right:5px;vertical-align:middle"></i>含在途债估值 <b style="color:#C4857A">-9,866</b><span style="color:var(--ink-soft);font-size:.75em"> 预测,不入账</span></button></div><div class='cw' data-pts='[{"d": "2026-08-19", "x": 54.0, "y": 72.6, "v": ["亏 110 元", "+0.00%", ""]}, {"d": "2026-08-20", "x": 66.5, "y": 72.7, "v": ["亏 142 元", "-0.53%", ""]}, {"d": "2026-08-21", "x": 79.0, "y": 72.7, "v": ["亏 128 元", "-0.31%", ""]}, {"d": "2026-08-24", "x": 116.4, "y": 73.8, "v": ["亏 326 元", "-3.62%", ""]}, {"d": "2026-08-25", "x": 128.9, "y": 73.9, "v": ["亏 344 元", "-3.91%", ""]}, {"d": "2026-08-26", "x": 141.4, "y": 73.3, "v": ["亏 240 元", "-2.19%", ""]}, {"d": "2026-08-27", "x": 153.9, "y": 77.8, "v": ["亏 1,054 元", "-2.82%", ""]}, {"d": "2026-08-28", "x": 166.4, "y": 79.6, "v": ["亏 1,384 元", "-3.07%", ""]}, {"d": "2026-08-31", "x": 203.9, "y": 75.8, "v": ["亏 702 元", "-2.55%", ""]}, {"d": "2026-09-01", "x": 216.3, "y": 76.5, "v": ["亏 822 元", "-2.64%", ""]}, {"d": "2026-09-02", "x": 228.8, "y": 74.8, "v": ["亏 520 元", "-2.40%", ""]}, {"d": "2026-09-03", "x": 241.3, "y": 155.4, "v": ["亏 15,093 元", "-13.73%", "债若按估值卖出 -2,301"]}, {"d": "2026-09-04", "x": 253.8, "y": 170.0, "v": ["亏 17,720 元", "-15.77%", "债若按估值卖出 -4,928"]}, {"d": "2026-09-07", "x": 291.3, "y": 159.6, "v": ["亏 15,848 元", "-14.39%", "债若按估值卖出 -3,020"]}, {"d": "2026-09-08", "x": 303.8, "y": 156.9, "v": ["亏 15,361 元", "-14.03%", "债若按估值卖出 -2,605"]}, {"d": "2026-09-09", "x": 316.2, "y": 158.5, "v": ["亏 15,653 元", "-14.25%", "债若按估值卖出 -3,053"]}, {"d": "2026-09-10", "x": 328.7, "y": 178.8, "v": ["亏 19,315 元", "-16.95%", "债若按估值卖出 -2,383"]}, {"d": "2026-09-11", "x": 341.2, "y": 174.1, "v": ["亏 18,467 元", "-16.32%", "债若按估值卖出 -1,547"]}, {"d": "2026-09-14", "x": 378.7, "y": 162.6, "v": ["亏 16,384 元", "-14.80%", "债若按估值卖出 +884"]}, {"d": "2026-09-15", "x": 391.2, "y": 154.0, "v": ["亏 14,829 元", "-13.64%", "债若按估值卖出 +2,439"]}, {"d": "2026-09-16", "x": 403.7, "y": 151.0, "v": ["亏 14,292 元", "-13.24%", "债若按估值卖出 +3,300"]}, {"d": "2026-09-17", "x": 416.1, "y": 169.2, "v": ["亏 17,588 元", "-15.67%", "债若按估值卖出 +4,852"]}, {"d": "2026-09-18", "x": 428.6, "y": 184.7, "v": ["亏 20,393 元", "-17.74%", "债若按估值卖出 +2,191"]}, {"d": "2026-09-19", "x": 441.1, "y": 184.7, "v": ["亏 20,393 元", "-17.74%", "债若按估值卖出 +2,191"]}, {"d": "2026-09-20", "x": 453.6, "y": 184.7, "v": ["亏 20,393 元", "-17.74%", "债若按估值卖出 +2,191"]}, {"d": "2026-09-21", "x": 466.1, "y": 183.7, "v": ["亏 20,213 元", "-17.61%", "债若按估值卖出 +2,707"]}, {"d": "2026-09-22", "x": 478.6, "y": 183.4, "v": ["亏 20,148 元", "-17.56%", "债若按估值卖出 +2,460"]}, {"d": "2026-09-23", "x": 491.1, "y": 176.9, "v": ["亏 18,968 元", "-16.69%", "债若按估值卖出 +4,180"]}, {"d": "2026-09-24", "x": 503.6, "y": 150.8, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-25", "x": 516.0, "y": 150.8, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-26", "x": 528.5, "y": 150.8, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-27", "x": 541.0, "y": 150.8, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-28", "x": 553.5, "y": 188.0, "v": ["亏 20,991 元", "-18.18%", "债若按估值卖出 -6,303"]}, {"d": "2026-09-29", "x": 566.0, "y": 195.9, "v": ["亏 22,406 元", "-19.23%", "债若按估值卖出 -9,866"]}]'><svg viewBox='0 0 620 255' width='100%' role='img'><line x1='54' x2='566' y1='210.2' y2='210.2' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='213.7' font-size='10' fill='#8B1A10' text-anchor='end'>-25,000</text><text x='573' y='213.7' font-size='10' fill='#C9A227'>-20.8%</text><line x1='54' x2='566' y1='182.6' y2='182.6' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='186.1' font-size='10' fill='#8B1A10' text-anchor='end'>-20,000</text><text x='573' y='186.1' font-size='10' fill='#C9A227'>-16.6%</text><line x1='54' x2='566' y1='154.9' y2='154.9' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='158.4' font-size='10' fill='#8B1A10' text-anchor='end'>-15,000</text><text x='573' y='158.4' font-size='10' fill='#C9A227'>-12.5%</text><line x1='54' x2='566' y1='127.3' y2='127.3' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='130.8' font-size='10' fill='#8B1A10' text-anchor='end'>-10,000</text><text x='573' y='130.8' font-size='10' fill='#C9A227'>-8.3%</text><line x1='54' x2='566' y1='99.6' y2='99.6' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='103.1' font-size='10' fill='#8B1A10' text-anchor='end'>-5,000</text><text x='573' y='103.1' font-size='10' fill='#C9A227'>-4.2%</text><line x1='54' x2='566' y1='44.3' y2='44.3' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='47.8' font-size='10' fill='#8B1A10' text-anchor='end'>5,000</text><text x='573' y='47.8' font-size='10' fill='#C9A227'>+4.2%</text><line x1='54' x2='566' y1='72.0' y2='72.0' stroke='var(--ink-soft)' stroke-width='1.3'/><text x='47' y='76.0' font-size='10' fill='var(--ink-soft)' text-anchor='end'>0</text><text x='573' y='76.0' font-size='10' fill='var(--ink-soft)'>0%</text><line x1='54.0' x2='54.0' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='54.0' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>08-19</text><line x1='153.9' x2='153.9' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='153.9' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>08-27</text><line x1='253.8' x2='253.8' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='253.8' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-04</text><line x1='378.7' x2='378.7' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='378.7' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-14</text><line x1='453.6' x2='453.6' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='453.6' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-20</text><line x1='528.5' x2='528.5' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='528.5' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-26</text><line x1='54' x2='54' y1='18' y2='223' stroke='var(--line)'/><line x1='566' x2='566' y1='18' y2='223' stroke='var(--line)'/><line x1='54' x2='566' y1='223' y2='223' stroke='var(--line)'/><g data-series='est'><path d='M54.0 72.6 C56.1 72.6 62.3 72.7 66.5 72.7 C70.7 72.8 70.7 72.5 79.0 72.7 C87.3 72.8 108.1 73.6 116.4 73.8 C124.8 74.0 124.8 73.9 128.9 73.9 C133.1 73.8 137.3 72.6 141.4 73.3 C145.6 73.9 149.7 76.7 153.9 77.8 C158.1 78.8 158.1 79.9 166.4 79.6 C174.7 79.3 195.5 76.4 203.9 75.8 C212.2 75.3 212.2 76.7 216.3 76.5 C220.5 76.3 224.7 73.5 228.8 74.8 C233.0 76.2 237.2 80.6 241.3 84.7 C245.5 88.8 245.5 98.6 253.8 99.2 C262.1 99.9 282.9 90.8 291.3 88.7 C299.6 86.5 299.6 86.3 303.8 86.4 C307.9 86.4 312.1 89.1 316.2 88.8 C320.4 88.6 324.6 86.5 328.7 85.1 C332.9 83.8 332.9 83.5 341.2 80.5 C349.5 77.5 370.4 70.7 378.7 67.1 C387.0 63.4 387.0 60.7 391.2 58.5 C395.3 56.2 399.5 55.9 403.7 53.7 C407.8 51.5 412.0 44.1 416.1 45.1 C420.3 46.2 424.5 57.4 428.6 59.8 C432.8 62.3 437.0 59.8 441.1 59.8 C445.3 59.8 449.4 60.3 453.6 59.8 C457.8 59.4 461.9 57.2 466.1 57.0 C470.3 56.7 474.4 59.7 478.6 58.4 C482.7 57.0 486.9 45.1 491.1 48.8 C495.2 52.6 499.4 75.3 503.6 80.6 C507.7 85.9 511.9 80.6 516.0 80.6 C520.2 80.6 524.4 80.6 528.5 80.6 C532.7 80.6 536.9 76.2 541.0 80.6 C545.2 85.0 549.3 99.2 553.5 106.8 C557.7 114.5 563.9 123.2 566.0 126.5 ' fill='none' stroke='#C4857A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='6 4' opacity='.85'/><circle cx='566.0' cy='126.5' r='3' fill='#C4857A'/></g><g data-series='pct'><path d='M54.0 72.0 C56.1 72.6 62.3 75.1 66.5 75.5 C70.7 75.8 70.7 70.6 79.0 74.0 C87.3 77.5 108.1 92.1 116.4 96.1 C124.8 100.1 124.8 99.6 128.9 98.0 C133.1 96.4 137.3 87.7 141.4 86.5 C145.6 85.3 149.7 89.8 153.9 90.7 C158.1 91.7 158.1 92.7 166.4 92.4 C174.7 92.1 195.5 89.4 203.9 88.9 C212.2 88.5 212.2 89.7 216.3 89.5 C220.5 89.4 224.7 75.6 228.8 87.9 C233.0 100.2 237.2 148.5 241.3 163.4 C245.5 178.2 245.5 176.2 253.8 176.9 C262.1 177.7 282.9 169.7 291.3 167.7 C299.6 165.8 299.6 165.5 303.8 165.3 C307.9 165.2 312.1 163.6 316.2 166.8 C320.4 170.1 324.6 182.5 328.7 184.8 C332.9 187.1 332.9 183.0 341.2 180.6 C349.5 178.2 370.4 173.4 378.7 170.5 C387.0 167.5 387.0 164.5 391.2 162.8 C395.3 161.0 399.5 157.8 403.7 160.1 C407.8 162.3 412.0 171.3 416.1 176.3 C420.3 181.3 424.5 187.7 428.6 190.0 C432.8 192.3 437.0 190.0 441.1 190.0 C445.3 190.0 449.4 190.2 453.6 190.0 C457.8 189.9 461.9 189.4 466.1 189.2 C470.3 189.0 474.4 189.9 478.6 188.8 C482.7 187.8 486.9 187.9 491.1 183.1 C495.2 178.2 499.4 163.8 503.6 160.0 C507.7 156.1 511.9 160.0 516.0 160.0 C520.2 160.0 524.4 160.0 528.5 160.0 C532.7 160.0 536.9 154.5 541.0 160.0 C545.2 165.5 549.3 186.3 553.5 193.0 C557.7 199.6 563.9 198.8 566.0 200.0 ' fill='none' stroke='#C9A227' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/><circle cx='566.0' cy='200.0' r='3' fill='#C9A227'/></g><g data-series='amt'><path d='M54.0 72.6 C56.1 72.6 62.3 72.7 66.5 72.7 C70.7 72.8 70.7 72.5 79.0 72.7 C87.3 72.8 108.1 73.6 116.4 73.8 C124.8 74.0 124.8 73.9 128.9 73.9 C133.1 73.8 137.3 72.6 141.4 73.3 C145.6 73.9 149.7 76.7 153.9 77.8 C158.1 78.8 158.1 79.9 166.4 79.6 C174.7 79.3 195.5 76.4 203.9 75.8 C212.2 75.3 212.2 76.7 216.3 76.5 C220.5 76.3 224.7 61.7 228.8 74.8 C233.0 88.0 237.2 139.6 241.3 155.4 C245.5 171.3 245.5 169.3 253.8 170.0 C262.1 170.7 282.9 161.8 291.3 159.6 C299.6 157.4 299.6 157.1 303.8 156.9 C307.9 156.7 312.1 154.9 316.2 158.5 C320.4 162.2 324.6 176.2 328.7 178.8 C332.9 181.4 332.9 176.8 341.2 174.1 C349.5 171.4 370.4 165.9 378.7 162.6 C387.0 159.2 387.0 155.9 391.2 154.0 C395.3 152.0 399.5 148.5 403.7 151.0 C407.8 153.5 412.0 163.6 416.1 169.2 C420.3 174.8 424.5 182.2 428.6 184.7 C432.8 187.3 437.0 184.7 441.1 184.7 C445.3 184.7 449.4 184.9 453.6 184.7 C457.8 184.6 461.9 184.0 466.1 183.7 C470.3 183.5 474.4 184.5 478.6 183.4 C482.7 182.2 486.9 182.3 491.1 176.9 C495.2 171.4 499.4 155.2 503.6 150.8 C507.7 146.5 511.9 150.8 516.0 150.8 C520.2 150.8 524.4 150.8 528.5 150.8 C532.7 150.8 536.9 144.6 541.0 150.8 C545.2 157.0 549.3 180.5 553.5 188.0 C557.7 195.6 563.9 194.6 566.0 195.9 ' fill='none' stroke='#8B1A10' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/><circle cx='566.0' cy='195.9' r='4' fill='#8B1A10'/></g><line class='gl' y1='18' y2='223' x1='-9' x2='-9' stroke='var(--ink-soft)' stroke-dasharray='3 3' opacity='0'/><circle class='mk' r='4.5' fill='var(--card)' stroke='#8B1A10' stroke-width='2.5' opacity='0'/></svg><div class='tip' hidden></div></div>
+      <div class='legend' style='margin:0 0 .4rem'><button class="lg on" data-s="amt"><i style="display:inline-block;width:16px;height:3px;background:var(--accent);margin-right:5px;vertical-align:middle"></i>实际盈亏 <b style="color:var(--accent)">-22,447</b></button><button class="lg on" data-s="pct"><i style="display:inline-block;width:16px;height:2px;background:var(--gold);margin-right:5px;vertical-align:middle"></i>实际比例 <b style="color:var(--gold)">-19.3%</b></button><button class="lg on" data-s="est"><i style="display:inline-block;width:16px;height:0;border-top:2px dashed var(--chart-est);margin-right:5px;vertical-align:middle"></i>含在途债估值 <b style="color:var(--chart-est)">-9,919</b><span style="color:var(--ink-soft);font-size:.75em"> 预测,不入账</span></button></div><div class='cw' data-pts='[{"d": "2026-08-19", "x": 54.0, "y": 72.5, "v": ["亏 110 元", "+0.00%", ""]}, {"d": "2026-08-20", "x": 66.5, "y": 72.7, "v": ["亏 142 元", "-0.53%", ""]}, {"d": "2026-08-21", "x": 79.0, "y": 72.6, "v": ["亏 128 元", "-0.31%", ""]}, {"d": "2026-08-24", "x": 116.4, "y": 73.7, "v": ["亏 326 元", "-3.62%", ""]}, {"d": "2026-08-25", "x": 128.9, "y": 73.8, "v": ["亏 344 元", "-3.91%", ""]}, {"d": "2026-08-26", "x": 141.4, "y": 73.2, "v": ["亏 240 元", "-2.19%", ""]}, {"d": "2026-08-27", "x": 153.9, "y": 77.7, "v": ["亏 1,054 元", "-2.82%", ""]}, {"d": "2026-08-28", "x": 166.4, "y": 79.6, "v": ["亏 1,384 元", "-3.07%", ""]}, {"d": "2026-08-31", "x": 203.9, "y": 75.8, "v": ["亏 702 元", "-2.55%", ""]}, {"d": "2026-09-01", "x": 216.3, "y": 76.5, "v": ["亏 822 元", "-2.64%", ""]}, {"d": "2026-09-02", "x": 228.8, "y": 74.8, "v": ["亏 520 元", "-2.40%", ""]}, {"d": "2026-09-03", "x": 241.3, "y": 155.3, "v": ["亏 15,093 元", "-13.73%", "债若按估值卖出 -2,301"]}, {"d": "2026-09-04", "x": 253.8, "y": 169.8, "v": ["亏 17,720 元", "-15.77%", "债若按估值卖出 -4,928"]}, {"d": "2026-09-07", "x": 291.3, "y": 159.4, "v": ["亏 15,848 元", "-14.39%", "债若按估值卖出 -3,020"]}, {"d": "2026-09-08", "x": 303.8, "y": 156.7, "v": ["亏 15,361 元", "-14.03%", "债若按估值卖出 -2,605"]}, {"d": "2026-09-09", "x": 316.2, "y": 158.4, "v": ["亏 15,653 元", "-14.25%", "债若按估值卖出 -3,053"]}, {"d": "2026-09-10", "x": 328.7, "y": 178.6, "v": ["亏 19,315 元", "-16.95%", "债若按估值卖出 -2,383"]}, {"d": "2026-09-11", "x": 341.2, "y": 173.9, "v": ["亏 18,467 元", "-16.32%", "债若按估值卖出 -1,547"]}, {"d": "2026-09-14", "x": 378.7, "y": 162.4, "v": ["亏 16,384 元", "-14.80%", "债若按估值卖出 +884"]}, {"d": "2026-09-15", "x": 391.2, "y": 153.8, "v": ["亏 14,829 元", "-13.64%", "债若按估值卖出 +2,439"]}, {"d": "2026-09-16", "x": 403.7, "y": 150.8, "v": ["亏 14,292 元", "-13.24%", "债若按估值卖出 +3,300"]}, {"d": "2026-09-17", "x": 416.1, "y": 169.0, "v": ["亏 17,588 元", "-15.67%", "债若按估值卖出 +4,852"]}, {"d": "2026-09-18", "x": 428.6, "y": 184.5, "v": ["亏 20,393 元", "-17.74%", "债若按估值卖出 +2,191"]}, {"d": "2026-09-19", "x": 441.1, "y": 184.5, "v": ["亏 20,393 元", "-17.74%", "债若按估值卖出 +2,191"]}, {"d": "2026-09-20", "x": 453.6, "y": 184.5, "v": ["亏 20,393 元", "-17.74%", "债若按估值卖出 +2,191"]}, {"d": "2026-09-21", "x": 466.1, "y": 183.5, "v": ["亏 20,213 元", "-17.61%", "债若按估值卖出 +2,707"]}, {"d": "2026-09-22", "x": 478.6, "y": 183.2, "v": ["亏 20,148 元", "-17.56%", "债若按估值卖出 +2,460"]}, {"d": "2026-09-23", "x": 491.1, "y": 176.7, "v": ["亏 18,968 元", "-16.69%", "债若按估值卖出 +4,180"]}, {"d": "2026-09-24", "x": 503.6, "y": 150.7, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-25", "x": 516.0, "y": 150.7, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-26", "x": 528.5, "y": 150.7, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-27", "x": 541.0, "y": 150.7, "v": ["亏 14,259 元", "-13.22%", "债若按估值卖出 -1,563"]}, {"d": "2026-09-28", "x": 553.5, "y": 187.8, "v": ["亏 20,991 元", "-18.18%", "债若按估值卖出 -6,303"]}, {"d": "2026-09-29", "x": 566.0, "y": 195.9, "v": ["亏 22,447 元", "-19.26%", "债若按估值卖出 -9,919"]}]'><svg viewBox='0 0 620 255' width='100%' role='img'><line x1='54' x2='566' y1='210.0' y2='210.0' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='213.5' font-size='10' fill='var(--accent)' text-anchor='end'>-25,000</text><text x='573' y='213.5' font-size='10' fill='var(--gold)'>-20.8%</text><line x1='54' x2='566' y1='182.4' y2='182.4' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='185.9' font-size='10' fill='var(--accent)' text-anchor='end'>-20,000</text><text x='573' y='185.9' font-size='10' fill='var(--gold)'>-16.6%</text><line x1='54' x2='566' y1='154.7' y2='154.7' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='158.2' font-size='10' fill='var(--accent)' text-anchor='end'>-15,000</text><text x='573' y='158.2' font-size='10' fill='var(--gold)'>-12.5%</text><line x1='54' x2='566' y1='127.1' y2='127.1' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='130.6' font-size='10' fill='var(--accent)' text-anchor='end'>-10,000</text><text x='573' y='130.6' font-size='10' fill='var(--gold)'>-8.3%</text><line x1='54' x2='566' y1='99.5' y2='99.5' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='103.0' font-size='10' fill='var(--accent)' text-anchor='end'>-5,000</text><text x='573' y='103.0' font-size='10' fill='var(--gold)'>-4.2%</text><line x1='54' x2='566' y1='44.3' y2='44.3' stroke='var(--line)' stroke-dasharray='2 4'/><text x='47' y='47.8' font-size='10' fill='var(--accent)' text-anchor='end'>5,000</text><text x='573' y='47.8' font-size='10' fill='var(--gold)'>+4.2%</text><line x1='54' x2='566' y1='71.9' y2='71.9' stroke='var(--ink-soft)' stroke-width='1.3'/><text x='47' y='75.9' font-size='10' fill='var(--ink-soft)' text-anchor='end'>0</text><text x='573' y='75.9' font-size='10' fill='var(--ink-soft)'>0%</text><line x1='54.0' x2='54.0' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='54.0' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>08-19</text><line x1='153.9' x2='153.9' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='153.9' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>08-27</text><line x1='253.8' x2='253.8' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='253.8' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-04</text><line x1='378.7' x2='378.7' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='378.7' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-14</text><line x1='453.6' x2='453.6' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='453.6' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-20</text><line x1='528.5' x2='528.5' y1='18' y2='223' stroke='var(--line)' stroke-dasharray='2 4'/><text x='528.5' y='238' font-size='10.5' fill='var(--ink-soft)' text-anchor='middle'>09-26</text><line x1='54' x2='54' y1='18' y2='223' stroke='var(--line)'/><line x1='566' x2='566' y1='18' y2='223' stroke='var(--line)'/><line x1='54' x2='566' y1='223' y2='223' stroke='var(--line)'/><g data-series='est'><path d='M54.0 72.5 C56.1 72.6 62.3 72.7 66.5 72.7 C70.7 72.7 70.7 72.5 79.0 72.6 C87.3 72.8 108.1 73.5 116.4 73.7 C124.8 73.9 124.8 73.9 128.9 73.8 C133.1 73.7 137.3 72.6 141.4 73.2 C145.6 73.9 149.7 76.7 153.9 77.7 C158.1 78.8 158.1 79.9 166.4 79.6 C174.7 79.2 195.5 76.3 203.9 75.8 C212.2 75.3 212.2 76.6 216.3 76.5 C220.5 76.3 224.7 73.4 228.8 74.8 C233.0 76.2 237.2 80.6 241.3 84.6 C245.5 88.7 245.5 98.5 253.8 99.1 C262.1 99.8 282.9 90.7 291.3 88.6 C299.6 86.5 299.6 86.3 303.8 86.3 C307.9 86.3 312.1 89.0 316.2 88.8 C320.4 88.6 324.6 86.5 328.7 85.1 C332.9 83.7 332.9 83.5 341.2 80.5 C349.5 77.5 370.4 70.7 378.7 67.0 C387.0 63.4 387.0 60.7 391.2 58.5 C395.3 56.2 399.5 55.9 403.7 53.7 C407.8 51.5 412.0 44.1 416.1 45.1 C420.3 46.2 424.5 57.4 428.6 59.8 C432.8 62.3 437.0 59.8 441.1 59.8 C445.3 59.8 449.4 60.3 453.6 59.8 C457.8 59.4 461.9 57.2 466.1 57.0 C470.3 56.7 474.4 59.7 478.6 58.3 C482.7 57.0 486.9 45.1 491.1 48.8 C495.2 52.5 499.4 75.3 503.6 80.6 C507.7 85.8 511.9 80.6 516.0 80.6 C520.2 80.6 524.4 80.6 528.5 80.6 C532.7 80.6 536.9 76.2 541.0 80.6 C545.2 84.9 549.3 99.0 553.5 106.7 C557.7 114.4 563.9 123.4 566.0 126.7 ' fill='none' stroke='var(--chart-est)' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='6 4' opacity='.85'/><circle cx='566.0' cy='126.7' r='3' fill='var(--chart-est)'/></g><g data-series='pct'><path d='M54.0 71.9 C56.1 72.5 62.3 75.1 66.5 75.4 C70.7 75.8 70.7 70.6 79.0 74.0 C87.3 77.4 108.1 92.0 116.4 96.0 C124.8 100.0 124.8 99.5 128.9 97.9 C133.1 96.3 137.3 87.7 141.4 86.5 C145.6 85.3 149.7 89.7 153.9 90.7 C158.1 91.6 158.1 92.6 166.4 92.3 C174.7 92.0 195.5 89.4 203.9 88.9 C212.2 88.4 212.2 89.6 216.3 89.5 C220.5 89.3 224.7 75.6 228.8 87.9 C233.0 100.2 237.2 148.4 241.3 163.2 C245.5 178.0 245.5 176.0 253.8 176.8 C262.1 177.5 282.9 169.5 291.3 167.6 C299.6 165.7 299.6 165.3 303.8 165.2 C307.9 165.0 312.1 163.4 316.2 166.7 C320.4 169.9 324.6 182.3 328.7 184.6 C332.9 186.9 332.9 182.8 341.2 180.4 C349.5 178.0 370.4 173.3 378.7 170.3 C387.0 167.3 387.0 164.3 391.2 162.6 C395.3 160.9 399.5 157.7 403.7 159.9 C407.8 162.2 412.0 171.1 416.1 176.1 C420.3 181.1 424.5 187.6 428.6 189.9 C432.8 192.1 437.0 189.9 441.1 189.9 C445.3 189.9 449.4 190.0 453.6 189.9 C457.8 189.7 461.9 189.2 466.1 189.0 C470.3 188.8 474.4 189.7 478.6 188.7 C482.7 187.6 486.9 187.7 491.1 182.9 C495.2 178.1 499.4 163.6 503.6 159.8 C507.7 156.0 511.9 159.8 516.0 159.8 C520.2 159.8 524.4 159.8 528.5 159.8 C532.7 159.8 536.9 154.3 541.0 159.8 C545.2 165.3 549.3 186.1 553.5 192.8 C557.7 199.5 563.9 198.8 566.0 200.0 ' fill='none' stroke='var(--gold)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/><circle cx='566.0' cy='200.0' r='3' fill='var(--gold)'/></g><g data-series='amt'><path d='M54.0 72.5 C56.1 72.6 62.3 72.7 66.5 72.7 C70.7 72.7 70.7 72.5 79.0 72.6 C87.3 72.8 108.1 73.5 116.4 73.7 C124.8 73.9 124.8 73.9 128.9 73.8 C133.1 73.7 137.3 72.6 141.4 73.2 C145.6 73.9 149.7 76.7 153.9 77.7 C158.1 78.8 158.1 79.9 166.4 79.6 C174.7 79.2 195.5 76.3 203.9 75.8 C212.2 75.3 212.2 76.6 216.3 76.5 C220.5 76.3 224.7 61.7 228.8 74.8 C233.0 87.9 237.2 139.4 241.3 155.3 C245.5 171.1 245.5 169.1 253.8 169.8 C262.1 170.5 282.9 161.6 291.3 159.4 C299.6 157.3 299.6 156.9 303.8 156.7 C307.9 156.6 312.1 154.7 316.2 158.4 C320.4 162.0 324.6 176.0 328.7 178.6 C332.9 181.2 332.9 176.6 341.2 173.9 C349.5 171.2 370.4 165.7 378.7 162.4 C387.0 159.0 387.0 155.7 391.2 153.8 C395.3 151.9 399.5 148.3 403.7 150.8 C407.8 153.4 412.0 163.4 416.1 169.0 C420.3 174.7 424.5 181.9 428.6 184.5 C432.8 187.1 437.0 184.5 441.1 184.5 C445.3 184.5 449.4 184.7 453.6 184.5 C457.8 184.4 461.9 183.8 466.1 183.5 C470.3 183.3 474.4 184.3 478.6 183.2 C482.7 182.0 486.9 182.1 491.1 176.7 C495.2 171.2 499.4 155.0 503.6 150.7 C507.7 146.3 511.9 150.7 516.0 150.7 C520.2 150.7 524.4 150.7 528.5 150.7 C532.7 150.7 536.9 144.5 541.0 150.7 C545.2 156.9 549.3 180.3 553.5 187.8 C557.7 195.4 563.9 194.5 566.0 195.9 ' fill='none' stroke='var(--accent)' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/><circle cx='566.0' cy='195.9' r='4' fill='var(--accent)'/></g><line class='gl' y1='18' y2='223' x1='-9' x2='-9' stroke='var(--ink-soft)' stroke-dasharray='3 3' opacity='0'/><circle class='mk' r='4.5' fill='var(--card)' stroke='var(--accent)' stroke-width='2.5' opacity='0'/></svg><div class='tip' hidden></div></div>
       <div class="progress-wrap" style="margin-top:1rem">
         <div class="bar"><i style="width:0.00%"></i></div>
         <div class="pct">0.00% / ¥300,000</div>
@@ -234,14 +241,14 @@
   <div data-tab="dca" hidden>
   <div class="bignums">
     <div class="cell"><div class="label">定投指数</div>
-      <div class="num neg">936.6</div></div>
-    <div class="cell"><div class="label">在场</div><div class="num">¥11,555</div>
+      <div class="num neg">938.1</div></div>
+    <div class="cell"><div class="label">在场</div><div class="num">¥11,574</div>
       <div class="sub">投入 ¥12,017</div></div>
     <div class="cell"><div class="label">累计盈亏</div>
-      <div class="num neg">-462</div>
-      <div class="sub neg">-3.84%</div></div>
+      <div class="num neg">-443</div>
+      <div class="sub neg">-3.69%</div></div>
   </div>
-  <div class="card"><h2>现在种着的</h2><div class="holding"><div><span class="name">科创芯片ETF南方</span><span class="code">588890</span></div><div class="figs neg">盈亏 -461(-3.8%)</div></div><div class="hgrid"><div><div class="k">买了多少</div><div class="v">9,200 份</div></div><div><div class="k">成本价</div><div class="v">1.3061</div></div><div><div class="k">花了多少</div><div class="v">¥12,016</div></div><div><div class="k">现价</div><div class="v">1.256</div></div><div><div class="k">现在值</div><div class="v">¥11,555</div></div><div><div class="k">出一半的价</div><div class="v">2.612<span class="sub">还差 +108%</span></div></div></div><div class="subnote">出一半 = 成本翻倍(+100%)时卖掉一半,剩下的是白拿的。 2026-08-25基金1拆3:1500份@4.063→4500份@1.3543,成本盈亏不变 <a href="https://quote.eastmoney.com/sh588890.html" target="_blank" rel="noopener">查实时价 ↗</a></div></div>
+  <div class="card"><h2>现在种着的</h2><div class="holding"><div><span class="name">科创芯片ETF南方</span><span class="code">588890</span></div><div class="figs neg">盈亏 -443(-3.7%)</div></div><div class="hgrid"><div><div class="k">买了多少</div><div class="v">9,200 份</div></div><div><div class="k">成本价</div><div class="v">1.3061</div></div><div><div class="k">花了多少</div><div class="v">¥12,016</div></div><div><div class="k">现价</div><div class="v">1.258</div></div><div><div class="k">现在值</div><div class="v">¥11,574</div></div><div><div class="k">出一半的价</div><div class="v">2.612<span class="sub">还差 +108%</span></div></div></div><div class="subnote">出一半 = 成本翻倍(+100%)时卖掉一半,剩下的是白拿的。 2026-08-25基金1拆3:1500份@4.063→4500份@1.3543,成本盈亏不变 <a href="https://quote.eastmoney.com/sh588890.html" target="_blank" rel="noopener">查实时价 ↗</a></div></div>
   <div class="card"><h2>下期计划</h2>
     <div class="next"><div class="date">10 月 9 日(周五)</div><div class="note">第 3 期</div></div>
     <ul class="rules" style="margin-top:.5rem">
@@ -261,14 +268,14 @@
   <div data-tab="qq" hidden>
   <div class="bignums">
     <div class="cell"><div class="label">配债指数</div>
-      <div class="num neg">783.8</div></div>
-    <div class="cell"><div class="label">在场</div><div class="num">¥28,783</div>
-      <div class="sub">持债 226 张 · 在途股 ¥6,183</div></div>
+      <div class="num neg">783.7</div></div>
+    <div class="cell"><div class="label">在场</div><div class="num">¥28,777</div>
+      <div class="sub">持债 226 张 · 在途股 ¥6,177</div></div>
     <div class="cell"><div class="label">累计盈亏</div>
-      <div class="num neg">-25,941</div>
-      <div class="sub neg">-21.62% 池子</div></div>
+      <div class="num neg">-25,950</div>
+      <div class="sub neg">-21.63% 池子</div></div>
   </div>
-  <div class="card"><h2>正在进行</h2><div class="holding"><div><span class="name">常青转债·留存300股</span><span class="code">常青科技 · 股票在手</span></div><div class="figs">300 股 · 买 23.38 · 浮动 <span class="neg">-836</span></div></div><div class="subnote">这笔没有新增配债权；台账仍记持有,卖出后补记成交价</div><div class="holding"><div><span class="name">润禾转02·配债腿</span><span class="code">润禾材料 · 已上市,等卖</span></div><div class="figs">股票已卖 <span class="neg">-2,664</span> · 持债 53 张(已缴 ¥5,300)</div></div><div class="subnote">债现价 <b>130.00</b>,这腿 <b class="pos">+1,590</b>,整单 <b class="neg">-1,074</b>;开板过 150 才回本。<b>卖出后才入账</b></div><div class="holding"><div><span class="name">瑞鹄转02</span><span class="code">瑞鹄模具 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-3,239</span> · 持债 88 张(已缴 ¥8,800)</div></div><div class="subnote">债开板过 <b>137</b> 这单就回本;模型参考开板 165(债腿约 +5,681),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">国科转债</span><span class="code">国科天成 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-1,297</span> · 持债 24 张(已缴 ¥2,400)</div></div><div class="subnote">债开板过 <b>154</b> 这单就回本;模型参考开板 163(债腿约 +1,502),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">奥士转债</span><span class="code">奥士康 · 等债上市</span></div><div class="figs">股票已卖 <span class="pos">+2,406</span> · 持债 10 张(已缴 ¥1,000)</div></div><div class="subnote">债开板过 <b>-141</b> 这单就回本;模型参考开板 170(债腿约 +696),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">常青转债</span><span class="code">常青科技 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-1,396</span> · 持债 20 张(已缴 ¥2,000)</div></div><div class="subnote">债开板过 <b>170</b> 这单就回本;模型参考开板 161(债腿约 +1,220),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">满坤转债</span><span class="code">满坤科技 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-1,234</span> · 持债 21 张(已缴 ¥2,100)</div></div><div class="subnote">债开板过 <b>159</b> 这单就回本;模型参考开板 155(债腿约 +1,159),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">莱特转债</span><span class="code">莱特光电 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-3,251</span> · 持债 10 张(已缴 ¥1,000)</div></div><div class="subnote">债开板过 <b>425</b> 这单就回本;模型参考开板 169(债腿约 +692),<b>只作参考,卖出前不入账</b></div></div>
+  <div class="card"><h2>正在进行</h2><div class="holding"><div><span class="name">常青转债·留存300股</span><span class="code">常青科技 · 股票在手</span></div><div class="figs">300 股 · 买 23.38 · 浮动 <span class="neg">-842</span></div></div><div class="subnote">这笔没有新增配债权；台账仍记持有,卖出后补记成交价</div><div class="holding"><div><span class="name">润禾转02·配债腿</span><span class="code">润禾材料 · 已上市,等卖</span></div><div class="figs">股票已卖 <span class="neg">-2,664</span> · 持债 53 张(已缴 ¥5,300)</div></div><div class="subnote">债现价 <b>130.00</b>,这腿 <b class="pos">+1,590</b>,整单 <b class="neg">-1,074</b>;开板过 150 才回本。<b>卖出后才入账</b></div><div class="holding"><div><span class="name">瑞鹄转02</span><span class="code">瑞鹄模具 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-3,239</span> · 持债 88 张(已缴 ¥8,800)</div></div><div class="subnote">债开板过 <b>137</b> 这单就回本;模型参考开板 164(债腿约 +5,675),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">国科转债</span><span class="code">国科天成 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-1,297</span> · 持债 24 张(已缴 ¥2,400)</div></div><div class="subnote">债开板过 <b>154</b> 这单就回本;模型参考开板 163(债腿约 +1,502),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">奥士转债</span><span class="code">奥士康 · 等债上市</span></div><div class="figs">股票已卖 <span class="pos">+2,406</span> · 持债 10 张(已缴 ¥1,000)</div></div><div class="subnote">债开板过 <b>-141</b> 这单就回本;模型参考开板 170(债腿约 +696),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">常青转债</span><span class="code">常青科技 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-1,396</span> · 持债 20 张(已缴 ¥2,000)</div></div><div class="subnote">债开板过 <b>170</b> 这单就回本;模型参考开板 161(债腿约 +1,219),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">满坤转债</span><span class="code">满坤科技 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-1,234</span> · 持债 21 张(已缴 ¥2,100)</div></div><div class="subnote">债开板过 <b>159</b> 这单就回本;模型参考开板 155(债腿约 +1,159),<b>只作参考,卖出前不入账</b></div><div class="holding"><div><span class="name">莱特转债</span><span class="code">莱特光电 · 等债上市</span></div><div class="figs">股票已卖 <span class="neg">-3,251</span> · 持债 10 张(已缴 ¥1,000)</div></div><div class="subnote">债开板过 <b>425</b> 这单就回本;模型参考开板 169(债腿约 +694),<b>只作参考,卖出前不入账</b></div></div>
   <details class="card detail-panel"><summary>配债战绩 · 4 单</summary>
     <div class="detail-body scroll-tbl">
     <table><thead><tr><th>日期</th><th>哪只债</th><th>净赚</th></tr></thead>
@@ -282,14 +289,14 @@
   <div data-tab="mf" hidden>
   <div class="bignums">
     <div class="cell"><div class="label">埋伏指数</div>
-      <div class="num pos">1,033.3</div></div>
-    <div class="cell"><div class="label">在场</div><div class="num">¥48,918</div>
+      <div class="num pos">1,032.9</div></div>
+    <div class="cell"><div class="label">在场</div><div class="num">¥48,854</div>
       <div class="sub">蹲着 2 只</div></div>
     <div class="cell"><div class="label">累计盈亏</div>
-      <div class="num pos">+3,997</div>
-      <div class="sub pos">+3.33% 池子</div></div>
+      <div class="num pos">+3,943</div>
+      <div class="sub pos">+3.29% 池子</div></div>
   </div>
-  <div class="card"><h2>正在蹲守</h2><div class="holding"><div><span class="name">航亚科技</span><span class="code">蹲守中</span></div><div class="figs">1072 股 · 买 23.30 · 现 23.21 · <span class="neg">-113</span></div></div><div class="subnote">还剩 13 天到反转 · 跌到 21.44 就走</div><div class="holding"><div><span class="name">中科环保</span><span class="code">蹲守中</span></div><div class="figs">4300 股 · 买 5.55 · 现 5.59 · <span class="pos">+155</span></div></div><div class="subnote">还剩 8 天到反转 · 跌到 5.11 就走</div></div>
+  <div class="card"><h2>正在蹲守</h2><div class="holding"><div><span class="name">航亚科技</span><span class="code">蹲守中</span></div><div class="figs">1072 股 · 买 23.30 · 现 23.15 · <span class="neg">-178</span></div></div><div class="subnote">还剩 13 天到反转 · 跌到 21.44 就走</div><div class="holding"><div><span class="name">中科环保</span><span class="code">蹲守中</span></div><div class="figs">4300 股 · 买 5.55 · 现 5.59 · <span class="pos">+155</span></div></div><div class="subnote">还剩 8 天到反转 · 跌到 5.11 就走</div></div>
   
   <details class="card detail-panel"><summary>蹲守记录 · 5 只（13 笔）</summary>
     <div class="detail-body"><div class="scroll-tbl">
@@ -307,7 +314,7 @@
   <div data-tab="vf" hidden>
   <div class="bignums">
     <div class="cell"><div class="label">胜利基金</div>
-      <div class="num" style="color:var(--red)">¥0</div></div>
+      <div class="num" style="color:var(--accent)">¥0</div></div>
     <div class="cell"><div class="label">已入账</div><div class="num">0 笔</div></div>
     <div class="cell"><div class="label">完结 / 盈利</div><div class="num">9 / 2 单</div></div>
   </div>
