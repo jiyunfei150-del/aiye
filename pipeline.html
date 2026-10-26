@@ -39,7 +39,7 @@
   .seal-icey { text-orientation:upright; font-size:.76rem; letter-spacing:.02em; }
   .rule-double { border-top:2px solid var(--gold); border-bottom:1px solid var(--gold);
     height:5px; margin-top:1.15rem; }
-  .tabs { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.5rem;
+  .tabs { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:.5rem;
     position:sticky; top:0; z-index:5; padding:.45rem 0; background:var(--paper); }
   .tabs button { min-width:0; border:1px solid var(--line); background:var(--card);
     color:var(--ink-soft); border-radius:10px; padding:.55rem .2rem; font:inherit;
@@ -78,6 +78,18 @@
   .hero-metrics div { min-width:0; }
   .hero-metrics span { display:block; color:var(--ink-soft); font-size:.76rem; }
   .hero-metrics strong { display:block; font-size:1.15rem; font-variant-numeric:tabular-nums; }
+  .position-row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:.1rem 1rem;
+    padding:.65rem 0; border-top:1px solid var(--line); }
+  .position-row strong { font-size:.9rem; }
+  .position-row .amount { font-weight:700; font-variant-numeric:tabular-nums; }
+  .position-row .meta { grid-column:1/-1; color:var(--ink-soft); font-size:.76rem; }
+  .position-bonds { color:var(--ink-soft); font-size:.76rem; margin:.35rem 0 .7rem; }
+  .position-bonds summary { cursor:pointer; }
+  .position-bonds ul { margin:.4rem 0; padding-left:1.2rem; }
+  #current-positions { margin-bottom:1.1rem; }
+  .extra-layout { display:grid; gap:1.1rem; }
+  .extra-layout .hero-metrics { padding-top:0; border-top:0; }
+  .extra-layout th,.extra-layout td { padding-left:.55rem; white-space:nowrap; }
   .focus-list { display:grid; gap:0; }
   .focus-row { display:grid; grid-template-columns:5.8rem 1fr; gap:.55rem; padding:.65rem 0;
     border-top:1px solid var(--line); align-items:start; }
@@ -173,7 +185,7 @@
     header h1 { font-size:1.65rem; }
     .seal { width:42px; height:42px; font-size:.85rem; }
     .seal-icey { font-size:.57rem; }
-    .tabs { gap:.3rem; }
+    .tabs { gap:.3rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
     .tabs button { font-size:.79rem; padding:.5rem .1rem; }
     .card { padding:1rem; }
     .overview-hero { padding:1.15rem; }
@@ -194,7 +206,7 @@
       <div>
         <h1>配债管道</h1>
         <div class="sub">已定申购日与同意注册候选</div>
-        <div class="sub soft">页面更新于 2026-10-26 10:53</div>
+        <div class="sub soft">页面更新于 2026-10-26 11:05</div>
       </div>
       <div class="seals" aria-hidden="true"><div class="seal seal-icey">AIYE</div></div>
     </div>
